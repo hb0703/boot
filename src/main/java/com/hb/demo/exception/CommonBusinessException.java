@@ -1,5 +1,9 @@
 package com.hb.demo.exception;
 
+
+/**
+ * 自定义异常类
+ */
 public class CommonBusinessException extends RuntimeException {
 
     private String code;  //异常状态码

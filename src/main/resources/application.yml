@@ -7,11 +7,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
   data:
     mongodb:
-      database: admin
-      host: 127.0.0.1
-      port: 27107
-      username: root
-      password: root
+      uri: mongodb://localhost:27017/admin
 
 mybatis-plus:
   configuration:
