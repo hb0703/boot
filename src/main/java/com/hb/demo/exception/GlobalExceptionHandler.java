@@ -24,7 +24,9 @@ public class GlobalExceptionHandler {
         if(e instanceof CommonBusinessException) {
             return R.fail("业务异常");
         }if(e instanceof ArithmeticException){
-            return R.fail("计算错误异常！");
+            return R.fail("计算错误异常");
+        }if(e instanceof RepeatSubmitException) {
+            return R.fail("请勿重复提交");
         }else {
             return R.fail(ResultCode.INTERNAL_SERVER_ERROR.getMessage());
         }

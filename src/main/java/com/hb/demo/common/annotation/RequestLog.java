@@ -1,6 +1,5 @@
 package com.hb.demo.common.annotation;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 
 import java.lang.annotation.*;
 

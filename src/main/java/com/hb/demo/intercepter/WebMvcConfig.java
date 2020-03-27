@@ -17,6 +17,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
         return new AuthInterceptor();
     }
 
+    @Bean
+    public RepeatSubmitInterceptor getRepeatSubmitInterceptor() {
+        return new RepeatSubmitInterceptor();
+    }
+
     /**
      * 注册拦截器
      * @param registry
@@ -27,6 +32,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(getAuthInterceptor())
                 .addPathPatterns("/**") // 配置拦截路径（所有路径都拦截）
                 .excludePathPatterns("/test"); // 配置排除的路径
+
+        registry.addInterceptor(getRepeatSubmitInterceptor()).addPathPatterns("/**");
 
     }
 }

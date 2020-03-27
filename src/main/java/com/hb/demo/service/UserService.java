@@ -11,6 +11,7 @@ import com.hb.demo.exception.CommonBusinessException;
 import com.hb.demo.mapper.UserMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -41,5 +42,11 @@ public class UserService extends ServiceImpl<UserMapper,User> {
         }catch (Exception e) {
             throw new CommonBusinessException();
         }
+    }
+
+    @Transactional
+    public void repeatSaveUser() {
+        User user = User.builder().userName("李四").build();
+        baseMapper.insert(user);
     }
 }

@@ -3,6 +3,7 @@ package com.hb.demo.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.hb.demo.api.R;
+import com.hb.demo.common.annotation.NoRepeatSubmit;
 import com.hb.demo.common.annotation.RequestLog;
 import com.hb.demo.entity.User;
 import com.hb.demo.entity.mongo.Mongolog;
@@ -54,6 +55,12 @@ public class TestController {
         Mongolog mongolog1 = Mongolog.builder().logName("测试1").build();
         Mongolog mongolog = mongoTemplate.insert(mongolog1, "mongolog");
         System.out.println(mongolog);
+    }
+
+    @GetMapping("/repeatSaveUser")
+    @NoRepeatSubmit(timeout = 4000)
+    public void repeatSaveUser() {
+        userService.repeatSaveUser();
     }
 
 }

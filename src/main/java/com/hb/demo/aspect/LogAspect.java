@@ -14,9 +14,13 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Aspect
 @Component
@@ -68,6 +72,7 @@ public class LogAspect {
      * @param e
      */
     protected void handleLog(final JoinPoint joinPoint, final Exception e) {
+        HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
         try {
             // 获得注解
             RequestLog requestLog = getAnnotationLog(joinPoint);

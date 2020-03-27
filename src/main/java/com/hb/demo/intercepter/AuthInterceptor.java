@@ -3,6 +3,7 @@ package com.hb.demo.intercepter;
 import com.mongodb.util.JSON;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,7 +19,6 @@ public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //验证登录状态
-
         //重定向
         //response.sendRedirect("https://www.baidu.com/");
         return true;
