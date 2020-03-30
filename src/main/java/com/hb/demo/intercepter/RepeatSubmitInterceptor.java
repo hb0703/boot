@@ -32,26 +32,32 @@ public class RepeatSubmitInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        HandlerMethod handlerMethod = (HandlerMethod) handler;
-        NoRepeatSubmit noRepeatSubmit = handlerMethod.getMethodAnnotation(NoRepeatSubmit.class);
-        if(Objects.isNull(noRepeatSubmit)) {
-            return Boolean.TRUE;
-        }
-        long timeout = noRepeatSubmit.timeout();
-        if(timeout < 3000L) {
-            timeout = 3000;
-        }
-        String formId = request.getParameter("form_id");
-        if(StringUtils.isEmpty(formId)) {
-            throw new RepeatSubmitException();
-        }
-        Object o = redisTemplate.opsForValue().get(formId);
-        if(Objects.isNull(o)) {
-            redisTemplate.boundValueOps(formId).set(formId, timeout, TimeUnit.MILLISECONDS);
-            return Boolean.TRUE;
-        }
-        redisTemplate.boundValueOps(formId).set(formId, timeout, TimeUnit.MILLISECONDS);
-        throw new RepeatSubmitException();
+       if(handler instanceof HandlerMethod) {
+           HandlerMethod handlerMethod = (HandlerMethod) handler;
+           NoRepeatSubmit noRepeatSubmit = handlerMethod.getMethodAnnotation(NoRepeatSubmit.class);
+           if(Objects.isNull(noRepeatSubmit)) {
+               return Boolean.TRUE;
+           }
+           long timeout = noRepeatSubmit.timeout();
+           if(timeout < 3000L) {
+               timeout = 3000;
+           }
+           String formId = request.getParameter("form_id");
+           if(StringUtils.isEmpty(formId)) {
+               throw new RepeatSubmitException();
+           }
+           Object o = redisTemplate.opsForValue().get(formId);
+           if(Objects.isNull(o)) {
+               redisTemplate.boundValueOps(formId).set(formId, timeout, TimeUnit.MILLISECONDS);
+               return Boolean.TRUE;
+           }
+           redisTemplate.boundValueOps(formId).set(formId, timeout, TimeUnit.MILLISECONDS);
+           throw new RepeatSubmitException();
+       }else {
+           return Boolean.TRUE;
+       }
+
+
     }
 
     @Override
