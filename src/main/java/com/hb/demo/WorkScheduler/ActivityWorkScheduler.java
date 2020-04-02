@@ -39,8 +39,8 @@ public class ActivityWorkScheduler {
                 executorService.execute(()->{
                     LocalDateTime activityStart = value.getActivityStart();
                     LocalDateTime activityEnd = value.getActivityEnd();
-                    logger.info("当前线程为{}",Thread.currentThread().getName());
-                    logger.info("活动开始时间为;{},活动结束时间为;{}",activityStart,activityEnd);
+                    //logger.info("当前线程为{}",Thread.currentThread().getName());
+                    //logger.info("活动开始时间为;{},活动结束时间为;{}",activityStart,activityEnd);
                     LocalDateTime now = LocalDateTime.now();
                     if(now.isAfter(activityStart) && now.isBefore(activityEnd) && value.getActivityStatus() != 1) {
                         logger.info("活动开启了");

@@ -37,4 +37,8 @@ public class ActivityService extends ServiceImpl<ActivityMapper, Activity> {
         }
 
     }
+
+    public Activity findById(Long id) {
+        return baseMapper.selectById(id);
+    }
 }

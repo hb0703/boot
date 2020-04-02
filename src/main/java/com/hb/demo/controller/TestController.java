@@ -29,6 +29,11 @@ public class TestController {
         System.out.println("test");
     }
 
+    @GetMapping("/findById")
+    public R findById(@RequestParam("id")Long id) {
+        return R.success(userService.findById(id),"获取成功！");
+    }
+
     @GetMapping("/findUser")
     public R<List<User>> findUser() {
         return R.success(userService.findUser(),"获取成功");

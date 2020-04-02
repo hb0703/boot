@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hb.demo.api.R;
 import com.hb.demo.entity.User;
 import com.hb.demo.exception.CommonBusinessException;
 import com.hb.demo.mapper.UserMapper;
@@ -48,5 +49,10 @@ public class UserService extends ServiceImpl<UserMapper,User> {
     public void repeatSaveUser() {
         User user = User.builder().userName("李四").build();
         baseMapper.insert(user);
+    }
+
+    public User findById(Long id) {
+        User user = baseMapper.selectById(id);
+        return user;
     }
 }

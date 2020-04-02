@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hb.demo.mapper.StockMapper">
+
+    <update id="updateStockById" parameterType="long" >
+        update tb_stock set storage = storage -1 where id = #{id}
+    </update>
+
+    <update id="updateStockByIdAndStorage" parameterType="long" >
+        update tb_stock set storage = storage -1 where id = #{id} and storage > 0
+    </update>
+
+    <select id="findStockById" parameterType="long" resultType="com.hb.demo.entity.Stock">
+        select * from tb_stock where id = #{id} for update
+    </select>
+
+    <update id="updateStockByIdAndVersion" parameterType="com.hb.demo.entity.Stock" >
+        update tb_stock set storage = storage -1 ,version = version + 1 where id = #{id} and version = #{version}
+    </update>
+
+</mapper>
