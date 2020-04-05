@@ -26,9 +26,9 @@ public class ActivityService extends ServiceImpl<ActivityMapper, Activity> {
 
     @Transactional(readOnly = false,rollbackFor = Exception.class)
     public void saveActivity() {
-        for (int i = 1; i < 21; i++) {
+        for (int i = 1; i < 100; i++) {
             Activity activity = Activity.builder().activityName("测试活动").activityDesc("测试")
-                    .activityStatus(0).activityType(1).createBy("admin").createDate(LocalDateTime.now()).
+                    .activityStatus(0).activityType(2).createBy("admin").createDate(LocalDateTime.now()).
                             activityStart(LocalDateTime.now().plusSeconds(10 + i * 10))
                     .activityEnd(LocalDateTime.now().plusSeconds(20 + i * 10)).build();
             baseMapper.insert(activity);

@@ -17,7 +17,7 @@ public class StockController {
 
     @GetMapping("miaosha")
     public R miaosha(@RequestParam("id")Long id) {
-        return stockService.miaosha(id);
+        return stockService.miaoshaBeiguan(id);
     }
 
 
