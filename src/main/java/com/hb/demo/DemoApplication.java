@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@EnableScheduling
+@EnableScheduling //开启定时job
 public class DemoApplication {
 
 	public static void main(String[] args) {
