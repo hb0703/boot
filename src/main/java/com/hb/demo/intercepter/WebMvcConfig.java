@@ -22,6 +22,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
         return new RepeatSubmitInterceptor();
     }
 
+    @Bean
+    public CrossInterceptor getCrossInterceptor() {
+        return new CrossInterceptor();
+    }
+
     /**
      * 注册拦截器
      * @param registry
@@ -34,6 +39,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/test"); // 配置排除的路径
 
         registry.addInterceptor(getRepeatSubmitInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(getCrossInterceptor())
+                // 拦截所有请求
+                .addPathPatterns("/**");
 
     }
 }
