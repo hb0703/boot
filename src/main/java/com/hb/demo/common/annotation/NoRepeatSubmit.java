@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 public @interface NoRepeatSubmit {
 
     /**
-     * 重复提交时间限制，单位毫秒 ()
+     * 重复提交时间限制，单位毫秒 (测试)
      * @return
      */
     long timeout() default 3000;
