@@ -49,7 +49,7 @@ public class TestController {
     }
 
     @GetMapping("/saveUser")
-    @RequestLog(interfaceName = "保存用户",model = "用户模块",isSaveRequestData = true,requestUrl = "/saveUser")
+    //@RequestLog(interfaceName = "保存用户",model = "用户模块",isSaveRequestData = true,requestUrl = "/saveUser")
     public void saveUser() {
         userService.saveUser();
     }
@@ -66,6 +66,12 @@ public class TestController {
     @NoRepeatSubmit(timeout = 4000)
     public void repeatSaveUser() {
         userService.repeatSaveUser();
+    }
+
+
+    @GetMapping("/excutorTest")
+    public void excutorTest() {
+        userService.excutorTest();
     }
 
 }
